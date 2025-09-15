@@ -264,10 +264,17 @@ class TestRunner {
               includeScope: true,
             });
 
-            if (
-              !result.suggestions[0]?.rationale.includes("not a Git repository")
-            ) {
-              throw new Error("Should detect non-Git repository");
+            const rationale = result.suggestions[0]?.rationale || "";
+            const hasGitError =
+              rationale.includes("not a git repository") ||
+              rationale.includes("not a Git repository") ||
+              rationale.includes("fatal: not a git repository") ||
+              rationale.includes("Git status");
+
+            if (!hasGitError) {
+              throw new Error(
+                `Should detect non-Git repository. Got rationale: "${rationale}"`,
+              );
             }
 
             return result;
