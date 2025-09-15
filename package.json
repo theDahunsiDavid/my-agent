@@ -4,6 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "start": "bun run index.ts",
+    "example": "bun run example-usage.ts",
     "test": "bun run tests/simple-test.ts",
     "test:full": "bun run tests/run-tests.ts",
     "test:verbose": "bun run tests/run-tests.ts --verbose"
